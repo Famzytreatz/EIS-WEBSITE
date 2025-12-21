@@ -40,8 +40,36 @@
 
                     <section class="registration">
             
-                          <form 
-                           action="https://formsubmit.co/eliudinternationalschool1@gmail.com.com" method="POST" data-success="success.html">
+                          <form id="regForm" action="https://formsubmit.co/eliudinternationalschool1@gmail.com" method="POST">
+                                <!-- form fields -->
+                                  <button type="submit">Submit</button>
+                                  
+
+                                  <script>
+                                  document.getElementById('regForm').addEventListener('submit', async function(e) {
+                                    e.preventDefault();
+                                      const form = e.target;
+                                        const data = new FormData(form);
+
+                                          try {
+                                              const resp = await fetch(form.action, {
+                                                    method: 'POST',
+                                                          body: data,
+                                                                // FormSubmit may reject fetch due to CORS; this is mainly for your own endpoints.
+                                                                    });
+
+                                                                        if (resp.ok) {
+                                                                              // redirect on success
+                                                                                    window.location.href = '/success.html'; // or full URL
+                                                                                        } else {
+                                                                                              alert('Submission failed. Please try again.');
+                                                                                                  }
+                                                                                                    } catch (err) {
+                                                                                                        console.error(err);
+                                                                                                            alert('Network error. Please try again.');
+                                                                                                              }
+                                                                                                              });
+                                                                                                              </script>
                               <h2>Student Registration Form</h2>
 
                                     <label>Full Name</label>
